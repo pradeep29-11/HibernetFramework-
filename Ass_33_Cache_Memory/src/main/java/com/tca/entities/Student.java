@@ -1,0 +1,47 @@
+package com.tca.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="student")
+public class Student 
+{
+	@Id
+	@Column(name="rno")
+	private Integer rno;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="per")
+	private Float per;
+
+	public Integer getRno() {
+		return rno;
+	}
+
+	public void setRno(Integer rno) {
+		this.rno = rno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Float getPer() {
+		return per;
+	}
+
+	public void setPer(Float per) {
+		this.per = per;
+	}
+	
+	
+}
