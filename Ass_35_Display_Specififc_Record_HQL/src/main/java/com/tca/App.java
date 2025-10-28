@@ -24,7 +24,17 @@ public class App
     	   sf = configuration.buildSessionFactory();
     	   session = sf.openSession();
     	   txn = session.beginTransaction();
+    	   /*
+    	    * Display Specific Records
+    	    * 
     	   Query query = session.createQuery("Select name,rno from Student");
+    	   
+    	   List<Object[]> list = query.getResultList();
+    	   */
+    	   
+    	   //Display Per+5 Column Extra
+    	   
+    	   Query<Object[]> query = session.createQuery("select name,rno,per,per+5 from Student",Object[].class);
     	   
     	   List<Object[]> list = query.getResultList();
     	   
