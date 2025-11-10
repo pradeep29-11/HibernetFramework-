@@ -1,18 +1,15 @@
 package com.tca;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import org.hibernate.query.MutationQuery;
 
 import com.tca.entities.Student;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.CriteriaDelete;
 import jakarta.persistence.criteria.Root;
 
 public class App 
@@ -131,7 +128,7 @@ public class App
     	  */
     	  
     	// Select city, count() from student group by city having count()>=2;
-    	  
+    	 /* 
     	  CriteriaBuilder cb = session.getCriteriaBuilder();
     	  CriteriaQuery<Object[]> cq = cb.createQuery(Object[].class);
     	  Root<Student> root = cq.from(Student.class);
@@ -151,7 +148,36 @@ public class App
     		System.out.println(row[0]+"--->"+row[1]);  
     	  }
     	  
+    	  */
     	  
+    	  //Update student set per=90.1 where rno=101;
+    	  /*
+    	  CriteriaBuilder cb = session.getCriteriaBuilder();
+    	  CriteriaUpdate<Student> cu = cb.createCriteriaUpdate(Student.class);
+    	  Root<Student> root = cu.from(Student.class);
+    	  cu.set("per",80.25);
+    	  cu.where(cb.equal(root.get("rno"),101));
+    	  
+    	  MutationQuery query = session.createMutationQuery(cu);
+    	  int cnt = query.executeUpdate();
+    	  
+    	  System.out.println("Records is Updated Successfully !! : "+cnt);
+    	  */
+    	  
+    	  //Delete from student where rno=110;
+    	  
+    	  CriteriaBuilder cb = session.getCriteriaBuilder();
+    	  CriteriaDelete<Student> cd = cb.createCriteriaDelete(Student.class);
+    	  Root<Student> root = cd.from(Student.class);
+    	  
+    	  cd.where(cb.equal(root.get("rno"), 110));
+    	  
+    	 MutationQuery query = session.createMutationQuery(cd);
+    	 
+    	 int cnt = query.executeUpdate();
+    	 
+    	 System.out.println("Record is Deleted Successfully !! : "+cnt);
+    	 
     	  
     	  txn.commit();
     	  
